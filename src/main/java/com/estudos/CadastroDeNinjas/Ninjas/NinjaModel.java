@@ -34,6 +34,11 @@ public class NinjaModel {
     @Column(name = "idade")
     private int idade;
 
+    // criar essa coluna somente se estiver usando DTO
+    // a coluna já existia no banco de dados (criada via migration)
+    @Column(name = "rank")
+    private String rank;
+
     //@ManyToOne muitos ninjas podem ter uma única missão
     @ManyToOne
     @JoinColumn(name = "missoes_id") // foreign key ou chave estrangeira
