@@ -9,6 +9,7 @@ import java.util.Optional;
 @Service
 public class MissoesService {
     private MissoesRepository missoesRepository;
+    private MissoesMapper missoesMapper;
 
     public MissoesService(MissoesRepository missoesRepository) {
         this.missoesRepository = missoesRepository;
@@ -17,6 +18,13 @@ public class MissoesService {
     // Listar todas as missões
     public List<MissoesModel> listarMissoes() {
         return missoesRepository.findAll();
+    }
+
+    // Criar nova missao
+    public MissoesDTO criarMissao(MissoesDTO missoesDTO) {
+        MissoesModel missao = missoesMapper.map(missoesDTO);
+        missao = missoesRepository.save(missao);
+        return missoesMapper.map(missao);
     }
 
     //Listar missão por ID
@@ -34,5 +42,9 @@ public class MissoesService {
         return null;
     }
 
+    // Deletar ninja
+    public void deletarMissaoPorId(Long id) {
+        missoesRepository.deleteById(id);
+    }
 
 }
