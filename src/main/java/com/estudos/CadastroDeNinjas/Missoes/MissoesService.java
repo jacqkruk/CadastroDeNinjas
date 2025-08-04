@@ -25,6 +25,14 @@ public class MissoesService {
         return missaoPorId.orElse(null);
     }
 
+    // Atualizar missão por ID
+    public MissoesModel atualizarMissao(Long id, MissoesModel missaoAtualizada) {
+        if (missoesRepository.existsById(id)) {
+            missaoAtualizada.setId(id);
+            return missoesRepository.save(missaoAtualizada);
+        }
+        return null;
+    }
 
 
 }
